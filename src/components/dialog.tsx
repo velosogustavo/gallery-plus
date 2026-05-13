@@ -18,7 +18,7 @@ export function DialogOverlay({
 }: React.ComponentProps<
   typeof DialogPrimitive.Overlay
 >) {
-    return <DialogPrimitive.Overlay
+    return( <DialogPrimitive.Overlay
     className={cn(`
         fixed inset-0 z-50 bg-background-secondary/60
         data-[state=open]:animate-in
@@ -28,7 +28,7 @@ export function DialogOverlay({
         backdrop-blur-sm
         `, className)}
     {...props}
-    />
+    /> )
 }
 
 export function DialogContent({
@@ -87,7 +87,7 @@ export function DialogHeader({
                 <ButtonIcon icon={XIcon} variant="ghost" />
             </DialogClose>
           </header>
-          <Divider className="mt-1.5 mb-5"/>
+          <Divider className="mt-2.5 mb-5"/>
     </>
     )
 }
@@ -98,7 +98,7 @@ export function DialogBody({children, ...props}: React.ComponentProps<"div">) {
 
 export function DialogFooter({children, ...props}:React.ComponentProps<"div">){
     return <div {...props}>
-        <Divider  className="mt-5 mb-1.5"/>
+        <Divider  className="mt-5 mb-2.5"/>
         <footer className="flex items-center justify-end gap-3">
             {children}
         </footer>
