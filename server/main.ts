@@ -52,7 +52,9 @@ const start = async () => {
   });
 
   try {
-    await fastify.listen({ port: 5799, host: '0.0.0.0' });
+    const port = Number(process.env.PORT) || 5799;
+    await fastify.listen({ port: port, host: '0.0.0.0' });
+    
     console.log('🚀 Server running at http://localhost:5799');
     console.log('📁 Images served at http://localhost:5799/images/');
     console.log('🏥 Health check at http://localhost:5799/health');
