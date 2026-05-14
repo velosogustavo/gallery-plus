@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router"
 import Text from "../components/text"
 import Container from "../components/container"
@@ -12,9 +13,16 @@ import type { Photo } from "../contexts/photos/models/photo";
 
 export default function PagePhotoDetails() {
     const {id} = useParams()
-    const {photo, previousPhotoId, nextPhotoId, isLoadingPhoto} = usePhoto(id)
+    const {photo, previousPhotoId, nextPhotoId, isLoadingPhoto, deletePhoto} = usePhoto(id)
     const {albums, isLoadingAlbums} = useAlbums()
+    const [isDeletingPhoto, setIsDeletingPhoto] = React.useTransition();
 
+
+    function handleDeletePhoto() {
+        setIsDeletingPhoto(async () => {
+            await deletePhoto(photo!.id);
+        })
+    }
 
     if(!isLoadingPhoto && !photo) {
         return <div>Foto não encontrada</div>
@@ -53,8 +61,10 @@ export default function PagePhotoDetails() {
                     {!isLoadingPhoto ? 
                     <Button
                     variant="destructive"
+                    onClick={handleDeletePhoto}
+                    disabled={isDeletingPhoto}
                     >
-                        Excluir
+                        {isDeletingPhoto ? "Excluindo..." : "Excluir"}
                     </Button>
                     
                     : (
