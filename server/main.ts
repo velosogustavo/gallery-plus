@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+import cors from '@fastify/cors'; 
 import multipart from '@fastify/multipart';
 import staticFiles from '@fastify/static';
 import { resolve } from 'path';
@@ -14,6 +15,10 @@ import { albumsRoutes } from './albums/albums-routes';
 const start = async () => {
   const fastify = Fastify({
     logger: true
+  });
+
+  await fastify.register(cors, {
+    origin: '*' 
   });
   
   // Register multipart for file uploads

@@ -4,37 +4,16 @@ import InputText from "../../../components/input-text";
 import Text from "../../../components/text";
 import SelectCheckboxIllustration from "../../../assets/images/select-checkbox.svg?react"
 import Skeleton from "../../../components/skeleton";
-import type { Photo } from "../../photos/models/photo";
 import PhotoImageSelectable from "../../photos/components/photo-image-selectable";
+import usePhotos from "../../photos/hooks/use-photos";
 
 interface AlbumNewDialogProps {
     trigger: React.ReactNode;
 }
 
 export default function AlbumNewDialog({trigger}:AlbumNewDialogProps) {
-    // TODO: Utilizar API quando estiver pronta.
-    const isLoadingPhotos = false;
-    const photos: Photo[] =[{
-            id: 'abc',
-            title: 'Ola mundo',
-            imageId: 'portrait-tower.png',
-            albums: [
-                {id: '123', title: 'album 1'},
-                {id: '456', title: 'album 2'},
-                {id: '789', title: 'album 3'},
-            ],
-        },
-            {
-            id: '123',
-            title: 'Ola mundo',
-            imageId: 'portrait-tower.png',
-            albums: [
-                {id: '123', title: 'album 4'},
-                {id: '456', title: 'album 5'},
-                {id: '789', title: 'album 6'},
-            ],
-        },
-    ];
+    const {photos, isLoadingPhotos} = usePhotos()
+    
         
     function handleTogglePhoto(selected: boolean, photoId: string) {
         console.log(selected, photoId)
@@ -60,7 +39,7 @@ export default function AlbumNewDialog({trigger}:AlbumNewDialogProps) {
                                 {photos.map((photo) => (
                                   <PhotoImageSelectable
                                     key={photo.id}
-                                    src={`/images/${photo.imageId}`}
+                                    src={`${import.meta.env.VITE_IMAGES_URL}/${photo.imageId}`}
                                     title={photo.title}
                                      imageClassName="w-20 h-20"
                                      onSelectImage={(selected) => handleTogglePhoto(selected, photo.id)}

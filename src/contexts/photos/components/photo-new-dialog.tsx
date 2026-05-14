@@ -7,8 +7,8 @@ import InputSingleFile from "../../../components/input-single-file";
 import ImagePreview from "../../../components/image-preview";
 import Text from "../../../components/text";
 import Skeleton from "../../../components/skeleton";
-import type { Album } from "../../album/models/album";
 import { useForm } from "react-hook-form";
+import useAlbums from "../../album/hooks/use-albums";
 
 interface PhotoNewDialogProps{
     trigger: React.ReactNode;
@@ -18,14 +18,9 @@ interface PhotoNewDialogProps{
 
 export default function PhotoNewDialog({trigger}: PhotoNewDialogProps) {
     const form = useForm();
+    const {albums, isLoadingAlbums} = useAlbums()
 
-    // TODO: Apenas para mock, pegar da API em breve
-    const isLoadingAlbum = false
-    const albums: Album[] = [
-            {id: '123', title: 'album 1'},
-            {id: '456', title: 'album 2'},
-            {id: '789', title: 'album 3'},
-        ]
+    
 
 
     return <Dialog>
@@ -60,7 +55,7 @@ export default function PhotoNewDialog({trigger}: PhotoNewDialogProps) {
                         <Text variant="label-small">Selecionar Álbuns</Text>
                     
                     <div className="flex flex-wrap gap-3">
-                        {!isLoadingAlbum && 
+                        {!isLoadingAlbums && 
                         albums.length > 0 && 
                         albums.map((album) => (
                             <Button 
@@ -74,7 +69,8 @@ export default function PhotoNewDialog({trigger}: PhotoNewDialogProps) {
                         ))}
 
 
-                        {isLoadingAlbum && Array.from({length: 5}).map((_,index) => (
+                        {isLoadingAlbums && 
+                        Array.from({length: 5}).map((_,index) => (
                             <Skeleton key={`album-loading-${index}`} className="h-7 w-20" />
                         ))}
                     </div>
