@@ -1,54 +1,62 @@
-# React + TypeScript + Vite
+## 📸 Gallery+
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O **Gallery+** é uma aplicação full-stack de gerenciamento de galeria de fotos, desenvolvida para proporcionar uma experiência fluida de organização visual. O projeto permite o upload de imagens, criação de álbuns personalizados e filtragem dinâmica de conteúdo através da URL.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto utiliza as ferramentas mais modernas do ecossistema JavaScript/TypeScript:
 
-## Expanding the ESLint configuration
+### Front-end
+*   **React 19**: Biblioteca base para a interface.
+*   **TanStack Query v5**: Gerenciamento de estado assíncrono e cache de dados.
+*   **React Hook Form & Zod**: Manipulação de formulários e validação de esquemas (schemas).
+*   **Tailwind CSS 4 & Tailwind Variants**: Estilização baseada em utilitários e sistema de variantes de componentes.
+*   **Nuqs**: Gerenciamento de filtros e estado através da URL (Query Strings).
+*   **Radix UI**: Componentes acessíveis (Primitives) para o sistema de diálogos (modais).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Back-end
+*   **Fastify 4**: Framework web focado em baixo overhead e máxima velocidade.
+*   **Zod**: Validação de dados rigorosa no lado do servidor.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠️ Funcionalidades
+
+*   **Galeria Dinâmica**: Visualização de fotos com carregamento otimizado.
+*   **Gerenciamento de Álbuns**: Criação de álbuns e associação de fotos através de modais interativos.
+*   **Filtros Inteligentes**: Filtragem por álbuns via URL, permitindo o compartilhamento de visualizações específicas.
+*   **Upload de Arquivos**: Suporte para envio de imagens (PNG, JPG, JPEG) com validação de tamanho (máximo 50MB) e tipo via Zod.
+*   **Interface Responsiva**: Design adaptável para diferentes tamanhos de tela utilizando Tailwind CSS.
+
+---
+
+## 🔧 Como rodar o projeto
+
+### Pré-requisitos
+*   Node.js instalado.
+*   Gerenciador de pacotes **pnpm** (ou npm/yarn).
+
+### Passo a passo
+
+1.  **Clone o repositório**:
+```bash
+    git clone https://github.com/velosogustavo/gallery-plus.git
+    cd gallery-plus 
+```
+2.  **Instale as dependências:**
+```bash
+    pnpm install
+```
+3.  **Inicie o servidor de desenvolvimento (Back-end):**
+```bash
+    pnpm dev-server
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  *  O servidor rodará em: `http://localhost:5799`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+4.  **Inicie o front-end (em outro terminal):**
+```bash
+    pnpm dev
 ```
+
+  *  A aplicação estará disponível em `http://localhost:5173`.
