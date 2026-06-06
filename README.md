@@ -1,62 +1,175 @@
-## 📸 Gallery+
+# 📸 Gallery+
 
-O **Gallery+** é uma aplicação full-stack de gerenciamento de galeria de fotos, desenvolvida para proporcionar uma experiência fluida de organização visual. O projeto permite o upload de imagens, criação de álbuns personalizados e filtragem dinâmica de conteúdo através da URL.
+Aplicação full-stack de gerenciamento de galeria de fotos. Permite fazer upload de imagens, organizar em álbuns personalizados e filtrar o conteúdo dinamicamente via URL.
 
-## 🚀 Tecnologias
+🌐 **[Ver deploy](https://frontend-gallery-plus.up.railway.app)**
 
-Este projeto utiliza as ferramentas mais modernas do ecossistema JavaScript/TypeScript:
-
-### Front-end
-*   **React 19**: Biblioteca base para a interface.
-*   **TanStack Query v5**: Gerenciamento de estado assíncrono e cache de dados.
-*   **React Hook Form & Zod**: Manipulação de formulários e validação de esquemas (schemas).
-*   **Tailwind CSS 4 & Tailwind Variants**: Estilização baseada em utilitários e sistema de variantes de componentes.
-*   **Nuqs**: Gerenciamento de filtros e estado através da URL (Query Strings).
-*   **Radix UI**: Componentes acessíveis (Primitives) para o sistema de diálogos (modais).
-
-### Back-end
-*   **Fastify 4**: Framework web focado em baixo overhead e máxima velocidade.
-*   **Zod**: Validação de dados rigorosa no lado do servidor.
+![Gallery+](public/screenshot.png)
 
 ---
 
-## 🛠️ Funcionalidades
+## 🛠️ Tecnologias
 
-*   **Galeria Dinâmica**: Visualização de fotos com carregamento otimizado.
-*   **Gerenciamento de Álbuns**: Criação de álbuns e associação de fotos através de modais interativos.
-*   **Filtros Inteligentes**: Filtragem por álbuns via URL, permitindo o compartilhamento de visualizações específicas.
-*   **Upload de Arquivos**: Suporte para envio de imagens (PNG, JPG, JPEG) com validação de tamanho (máximo 50MB) e tipo via Zod.
-*   **Interface Responsiva**: Design adaptável para diferentes tamanhos de tela utilizando Tailwind CSS.
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Fastify](https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white)
+![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
+
+**Front-end:** React 19, TypeScript, Vite, Tailwind CSS, TanStack Query, React Router, React Hook Form, Zod, Nuqs, Radix UI, Axios, Sonner
+
+**Back-end:** Fastify 4, TypeScript, Zod, @fastify/multipart, @fastify/static, @fastify/cors, tsup
+
+**Banco de dados:** arquivo JSON local (`data/db.json`) — sem dependências externas.
 
 ---
 
-## 🔧 Como rodar o projeto
+## ✨ Funcionalidades
+
+- 🖼️ **Galeria de fotos** com layout em grid e carregamento otimizado
+- 📤 **Upload de imagens** (PNG, JPG, JPEG, até 50MB)
+- 📁 **Criação e gerenciamento de álbuns** com associação de fotos
+- 🔗 **Filtro por álbum** via URL (compartilhável)
+- 🔍 **Busca de fotos** por título
+- ⬅️ **Navegação entre fotos** (anterior / próxima) na visualização detalhada
+- 🗑️ **Deleção em cascata** — remover uma foto também limpa suas relações com álbuns
+- 📱 **Interface responsiva** com notificações e feedbacks visuais
+
+---
+
+## 📂 Estrutura do projeto
+
+```
+gallery-plus/
+├── src/                        # Front-end (React)
+│   ├── components/             # Componentes reutilizáveis
+│   ├── contexts/
+│   │   ├── photos/             # Lógica, hooks e componentes de fotos
+│   │   └── album/              # Lógica, hooks e componentes de álbuns
+│   ├── pages/                  # Páginas (home, detalhes, layout)
+│   ├── helpers/                # Configuração do Axios e utilitários
+│   └── App.tsx
+├── server/                     # Back-end (Fastify)
+│   ├── main.ts                 # Entrypoint do servidor
+│   ├── models.ts               # Interfaces de dados
+│   ├── photos/                 # Rotas e serviço de fotos
+│   ├── albums/                 # Rotas e serviço de álbuns
+│   └── services/               # DatabaseService e manipulação de imagens
+├── data/                       # Dados em runtime (gitignore recomendado)
+│   ├── db.json                 # Banco de dados JSON
+│   └── images/                 # Imagens enviadas
+└── public/                     # Assets estáticos
+```
+
+---
+
+## 🚀 Como rodar
 
 ### Pré-requisitos
-*   Node.js instalado.
-*   Gerenciador de pacotes **pnpm** (ou npm/yarn).
 
-### Passo a passo
+- Node.js
+- pnpm (`npm install -g pnpm`)
 
-1.  **Clone o repositório**:
+### Instalação
+
 ```bash
-    git clone https://github.com/velosogustavo/gallery-plus.git
-    cd gallery-plus 
-```
-2.  **Instale as dependências:**
-```bash
-    pnpm install
-```
-3.  **Inicie o servidor de desenvolvimento (Back-end):**
-```bash
-    pnpm dev-server
+git clone https://github.com/velosogustavo/gallery-plus.git
+cd gallery-plus
+pnpm install
 ```
 
-  *  O servidor rodará em: `http://localhost:5799`.
+### Variáveis de ambiente
 
-4.  **Inicie o front-end (em outro terminal):**
-```bash
-    pnpm dev
+Crie um arquivo `.env` na raiz com:
+
+```env
+VITE_API_URL=http://localhost:5799
+VITE_IMAGES_URL=http://localhost:5799/images
 ```
 
-  *  A aplicação estará disponível em `http://localhost:5173`.
+### Desenvolvimento
+
+Execute os dois comandos em terminais separados:
+
+```bash
+# Terminal 1 — back-end
+pnpm dev-server
+
+# Terminal 2 — front-end
+pnpm dev
+```
+
+- Front-end: `http://localhost:5173`
+- Back-end: `http://localhost:5799`
+
+### Produção
+
+```bash
+pnpm build        # compila front-end + servidor
+pnpm run-server   # inicia o servidor compilado
+```
+
+---
+
+## 📜 Scripts disponíveis
+
+| Comando | Descrição |
+|---|---|
+| `pnpm dev` | Inicia o front-end em modo desenvolvimento |
+| `pnpm dev-server` | Inicia o back-end em modo desenvolvimento |
+| `pnpm build` | Build de produção (front-end + servidor) |
+| `pnpm build-server` | Build somente do servidor (tsup) |
+| `pnpm run-server` | Executa o servidor compilado |
+| `pnpm lint` | Roda o ESLint |
+
+---
+
+## 🔌 API
+
+Base URL: `http://localhost:5799`
+
+### Fotos
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/photos` | Lista fotos (filtros: `?q=título` `?albumId=uuid`) |
+| `GET` | `/photos/:id` | Busca foto por ID (inclui navegação prev/next) |
+| `POST` | `/photos` | Cria foto `{ title, albumsIds? }` |
+| `POST` | `/photos/:id/image` | Faz upload da imagem (form-data `file`) |
+| `PATCH` | `/photos/:id` | Atualiza título `{ title }` |
+| `DELETE` | `/photos/:id` | Remove foto e imagem do disco |
+| `PUT` | `/photos/:id/albums` | Gerencia álbuns da foto `{ albumsIds }` |
+
+### Álbuns
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/albums` | Lista álbuns |
+| `GET` | `/albums/:id` | Busca álbum por ID |
+| `POST` | `/albums` | Cria álbum `{ title }` |
+| `DELETE` | `/albums/:id` | Remove álbum |
+
+### Outros
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/health` | Health check |
+| `GET` | `/images/*` | Serve imagens estáticas |
+
+---
+
+## 🗄️ Banco de dados
+
+O projeto usa um arquivo JSON como banco de dados — sem necessidade de instalar ou configurar nenhum serviço externo. O arquivo `data/db.json` e o diretório `data/images/` são criados automaticamente na primeira execução.
+
+```json
+{
+  "photos": [],
+  "albums": [],
+  "photosOnAlbums": []
+}
+```
+
+> ⚠️ Em produção, garanta que o diretório `data/` seja persistente e com permissão de escrita.
