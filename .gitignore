@@ -23,8 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
-# Data folder
-data/
+data/*
+!data/db.json
+!data/images/
+data/images/*
+!data/images/118143c1-cfee-4fe9-af8a-44c8c9f77e23.png
 
 # Server build output
 server/dist/

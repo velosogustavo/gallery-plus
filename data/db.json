@@ -1,0 +1,26 @@
+{
+  "photos": [
+    {
+      "id": "afdce163-45dc-45ff-b8df-89119bda2981",
+      "title": "Natureza",
+      "albumsIds": [],
+      "imageId": "118143c1-cfee-4fe9-af8a-44c8c9f77e23.png"
+    }
+  ],
+  "albums": [
+    {
+      "id": "95442053-0bd2-44ef-8a56-cd01029f1f5a",
+      "title": "Melhores fotos"
+    },
+    {
+      "id": "8d30c087-23b6-4e57-b5bb-ec145267d242",
+      "title": "Viajens"
+    }
+  ],
+  "photosOnAlbums": [
+    {
+      "photoId": "afdce163-45dc-45ff-b8df-89119bda2981",
+      "albumId": "95442053-0bd2-44ef-8a56-cd01029f1f5a"
+    }
+  ]
+}
