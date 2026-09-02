@@ -2,7 +2,9 @@
 
 Aplicação full-stack de gerenciamento de galeria de fotos. Permite fazer upload de imagens, organizar em álbuns personalizados e filtrar o conteúdo dinamicamente via URL.
 
-🌐 **[Ver deploy](https://frontend-gallery-plus.up.railway.app)**
+🌐 **[Ver deploy](https://gallery-plus-one.vercel.app)**
+
+> ℹ️ O back-end está hospedado no plano gratuito do Render, que hiberna após um período sem uso. O primeiro acesso pode levar cerca de 30 segundos até as fotos aparecerem.
 
 ![Gallery+](public/screenshot.png)
 
